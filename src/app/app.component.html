@@ -1,0 +1,41 @@
+<div style="position: absolute; right: 10%; top: 4%">
+  <nav class="navbar">
+    <a
+      style="color:darkgray"
+      *ngIf="ifSessionEx()"
+      [routerLink]="['/login']"
+      (click)="logOut()"
+    >
+      <i class="fas fa-sign-out-alt">
+        <i>logout</i>
+      </i>
+    </a>
+  </nav>
+</div>
+
+<div
+  style="position: absolute;
+top: 8%;"
+  [@slideInAnimation]="outlet.isActivated ? outlet.activatedRoute : ''"
+>
+  <span style="position:absolute;top: 50%;left: 100%;z-index:10">
+    <i class="fa fa-spinner fa-spin fa-3x fa-fw" *ngIf="spinner"></i>
+  </span>
+  <router-outlet #outlet="outlet"> </router-outlet>
+</div>
+
+<footer
+  style="position: fixed; bottom: 0%; left: 90%;"
+>
+  <h2 style="display: inline-block">
+    <a href="https://www.linkedin.com/company/p2-energy-solutions/">
+      <i class="fab fa-linkedin-in" style="color: #0e76a8"></i>
+    </a>
+  </h2>
+  &nbsp;&nbsp;&nbsp;
+  <h2 style="display: inline-block">
+    <a href="https://twitter.com/P2Energy">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </h2>
+</footer>

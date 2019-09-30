@@ -1,0 +1,237 @@
+<div style="margin-left: 20px" class="col-12 col-sm-12 col-md-12">
+  <h5 style="color: crimson"><label>Contact ID: </label> {{ id }}</h5>
+  <form  [formGroup]="editForm">
+    <span style=" float: left;  width: 140px;">
+      <label style="font-weight: 600; font-style:italic;">firstname:</label>
+      <div>
+        <input
+          class="form-control"
+          type="text"
+          required
+          minlength="2"
+          formControlName="firstName"
+        />
+        <span
+          *ngIf="
+            editForm.get('firstName').touched &&
+            editForm.get('firstName').errors?.required
+          "
+          style="color:red;"
+        >
+          can't be blank
+        </span>
+        <span
+          *ngIf="
+            editForm.get('firstName').touched &&
+            editForm.get('firstName').errors?.minlength
+          "
+          style="color:red;"
+        >
+          minimum 2 character
+        </span>
+      </div>
+
+      <label style="font-weight: 600; font-style:italic;">lastname:</label>
+      <div>
+        <input
+          class="form-control"
+          type="text"
+          required
+          minlength="2"
+          formControlName="lastName"
+        />
+        <span
+          *ngIf="
+            editForm.get('lastName').touched &&
+            editForm.get('lastName').errors?.required
+          "
+          style="color:red;"
+        >
+          can't be blank
+        </span>
+        <span
+          *ngIf="
+            editForm.get('lastName').touched &&
+            editForm.get('lastName').errors?.minlength
+          "
+          style="color:red;"
+        >
+          minimum 2 character
+        </span>
+      </div>
+      <label style="font-weight: 600; font-style:italic;">birthday:</label>
+      <div>
+        <input
+          style="color:cornflowerblue; width: 99%; "
+          [(ngModel)]="contact.birthday"
+          [ngModelOptions]="{ standalone: true }"
+          type="date"
+        />
+      </div>
+      <label style="font-weight: 600; font-style:italic;">phone:</label>
+      <div>
+        <input
+          class="form-control"
+          type="text"
+          required
+          minlength="5"
+          formControlName="pHone"
+        />
+        <span
+          *ngIf="
+            editForm.get('pHone').touched &&
+            editForm.get('pHone').errors?.required
+          "
+          style="color:red;"
+        >
+          can't be blank
+        </span>
+        <span
+          *ngIf="
+            editForm.get('pHone').touched &&
+            editForm.get('pHone').errors?.minlength
+          "
+          style="color:red;"
+        >
+          minimum 5 character
+        </span>
+      </div>
+      <div>
+        <label style="font-weight: 600; font-style:italic;">company:</label>
+        <div>
+          <static-list
+            (valueChange)="saveCompany($event)"
+            [xValue]="this.contact.company"
+          >
+          </static-list>
+        </div>
+      </div>
+    </span>
+
+    <span style="display: inline-block;margin-left: 5px; width: 250px;">
+      <div>
+        <label style="font-weight: 600; font-style:italic;">address:</label>
+        <div>
+          <input
+            class="form-control"
+            type="text"
+            required
+            minlength="5"
+            placeholder="address (required)"
+            formControlName="address"
+          />
+          <span
+            *ngIf="
+              editForm.get('address').touched &&
+              editForm.get('address').errors?.required
+            "
+            style="color:red;"
+          >
+            can't be blank
+          </span>
+          <span
+            *ngIf="
+              editForm.get('address').touched &&
+              editForm.get('address').errors?.minlength
+            "
+            style="color:red;"
+          >
+            minimum 5 character
+          </span>
+        </div>
+      </div>
+
+      <label style="font-weight: 600;">username/email:</label>
+      <div>
+        <input
+          class="form-control"
+          formControlName="userName"
+          pattern="[^ @]*@[^ @]*"
+          required
+          minlength="5"
+        />
+        <span
+          *ngIf="
+            editForm.get('userName').touched &&
+            editForm.get('userName').errors?.required
+          "
+          style="color:red;"
+        >
+          can't be blank
+        </span>
+        <span
+          *ngIf="
+            editForm.get('userName').touched &&
+            editForm.get('userName').errors?.minlength
+          "
+          style="color:red;"
+        >
+          minimum 5 character
+        </span>
+        <span
+          *ngIf="
+            editForm.get('userName').touched &&
+            editForm.get('userName').errors?.pattern
+          "
+          style="color:red;"
+        >
+          must contain "@"
+        </span>
+      </div>
+      <label style="font-weight: 600; font-style:italic;">friends ID:</label>
+      <div>
+        <input
+          [(ngModel)]="contact.friends"
+          type="text"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+      <label style="font-weight: 600; font-style:italic;">note:</label>
+      <div>
+        <textarea
+          rows="5"
+          cols="34"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="contact.note"
+        >
+        </textarea>
+      </div>
+    </span>
+  </form>
+
+  <div style="position: absolute; right: 5%;">
+    <button
+      style="float: right ; margin-left: 5px "
+      class="btn btn-danger"
+      (click)="delContact()"
+      [routerLink]="['/']"
+    >
+      delete
+    </button>
+    <button
+      style="float: right ; margin-left: 5px "
+      class="btn btn-warning "
+      (click)="backToContacts()"
+     
+    >
+      cancel
+    </button>
+    <button
+      style="float: right ;  margin-left: 5px"
+      class="btn btn-success"
+      (click)="revertContact()"
+    >
+      revert
+    </button>
+    <button
+      style="float: right; margin-left: 5px"
+      [routerLink]="['/']"
+      (click)="saveContact()"
+      type="submit"
+      class="btn btn-primary "
+      [disabled]="!editForm.valid"
+    >
+      save
+    </button>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div
+  class="row"
+  [ngStyle]="
+    ifIdEven
+      ? { 'background-color': '#F2F9FF' }
+      : { 'background-color': 'white' }
+  "
+  [routerLink]="ifAdmin ? ['/contacts', id] : null"
+>
+  <div class="col-12 col-sm-6 col-md-3 px-0">
+    <img
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoiSqIw91nmgDLVC7ouyP0fq18RaJNBhcKi7JLQwAQ44KEdN5j"
+      class="rounded-circle img-fluid "
+    />
+  </div>
+  <div class="col-12 col-sm-6 col-md-9 text-sm-left">
+    <label style="font-weight: 600; font-style:italic;"
+      >{{ fullName | slice: 0:12 }}...</label
+    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <small
+      >ID: <span style="font-weight: bold">{{ id }}</span></small
+    >
+    <br />
+    <span class="fas fa-map-marker-alt " style="color:blueviolet"></span>
+    <span>{{ address | slice: 0:15 }}...</span>
+    <br />
+    <span class="fa fa-phone fa-fw " style="color:limegreen" title=""></span>
+    <span class=" small">{{ phone }}</span>
+    <br />
+    <span class="fa fa-envelope fa-fw " style="color:darkred"></span>
+    <span class=" small text-truncate">{{ username | slice: 0:15 }}...</span>
+
+    <i
+      style="position: absolute; left:90%; color: cornflowerblue"
+      class="fa fa-edit"
+    >
+      <!-- [queryParams]="{filter:typedContent}" -->
+    </i>
+  </div>
+</div>

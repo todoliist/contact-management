@@ -1,0 +1,58 @@
+<div class="col-12 col-sm-12 col-md-12 border-0">
+  <span >
+    <pagination-controls
+      style="text-align: left; display: inline-block;"
+      (pageChange)="p = $event"
+    ></pagination-controls>
+    <i
+      class="fas fa-sort"
+      style="text-align: left; cursor: pointer;"
+      (click)="sortByFirstName()"
+    ></i>
+  </span>
+  <div>
+    <div style="display: inline-block; max-width: 600px;">
+    <ul>
+      <li
+        *ngFor="
+          let contact of searchedContacts
+            | paginate: { itemsPerPage: 10, currentPage: p }
+        "
+        class="list-group-item border-0"
+        style="width: 280px; display:inline-block;text-align: left;"
+      >
+        <app-contact-item
+          [id]="contact.id"
+          [fullName]="contact.firstName + '   ' + contact.lastName"
+          [username]="contact.username"
+          [address]="contact.address"
+          [phone]="contact.phone"
+          [typedContent]="typedContent"
+          [ifAdmin]="ifAdmin"
+        ></app-contact-item>
+      </li>
+    </ul>
+  </div>
+    <div style="float: right;">
+      <router-outlet ></router-outlet>
+    </div>
+  </div>
+
+  <div style="position: fixed; top: 8%; right:20%">
+    <h6>
+      <i class="fas fa-search " style="color:midnightblue"></i> &nbsp;<input
+        style="font-style: italic;"
+        [(ngModel)]="typedContent"
+        [placeholder]="backedContent ? backedContent : 'search by firstname'"
+      />
+      <a
+        [routerLink]="['/contacts/-1']"
+        style="display: inline-block; font-size: 80%"
+      >
+        <div style="position: relative; left: 20%; ">
+          <h5><i class="fas fa-plus-circle" style="color:lightskyblue"></i></h5>
+        </div>
+      </a>
+    </h6>
+  </div>
+</div>
