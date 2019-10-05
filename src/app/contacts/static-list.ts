@@ -8,7 +8,6 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
         <input
           type="text"
           style="color: orange"
-          [placeholder]="xValue"
           [ngModel]="xValue"
           ngxTypeahead
           class="col-sm-12"

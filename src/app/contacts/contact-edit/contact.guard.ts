@@ -12,7 +12,7 @@ export class ContactGuard implements CanDeactivate<ContactEditComponent> {
     component: ContactEditComponent
   ): boolean | Observable<boolean> | Promise<boolean> {
     component.formTouched().subscribe(ifTouched => {
-      component.formSavedOrClicked().subscribe(ifSavedOrCancelled => {
+      component.formSavedOrCancelled().subscribe(ifSavedOrCancelled => {
         console.log("ifTouched:" + ifTouched + "   " + "ifSaved:" + ifSavedOrCancelled);
         if (ifTouched && !ifSavedOrCancelled) {
           console.log("touched but not saved/cancelled, will ask confirm");

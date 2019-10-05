@@ -32,7 +32,7 @@ export class ContactEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
   ) { }
-  
+
   getContact(id: number): void {
     this.contactService.getContactById(id).subscribe(contact => {
       this.contact = contact;
@@ -53,11 +53,10 @@ export class ContactEditComponent implements OnInit {
     this.contact.lastName = this.editForm.get("lastName").value;
     this.contact.phone = this.editForm.get("pHone").value;
     this.contact.address = this.editForm.get("address").value;
-    this.saveCompany;
     this.contactService.saveContact(this.contact).subscribe(
       () => {
         // if direct navigate to contacts, updated form value will not show on contacts list
-        // in html, the routerlink was added too, so router will first navigate to login 
+        // in html, the routerlink was added too, so router will first navigate to login
         // and then will navigate to contacts , the view will be updated as displayed
         this.router.navigate(["/contacts"]);
       }
@@ -108,7 +107,7 @@ export class ContactEditComponent implements OnInit {
     }
   }
 
-  formSavedOrClicked(): Observable<boolean> {
+  formSavedOrCancelled(): Observable<boolean> {
     if (this.saveOrCancelClicked) {
       // reset
       this.saveOrCancelClicked = false;
@@ -127,7 +126,7 @@ export class ContactEditComponent implements OnInit {
       address: new FormControl()
     });
 
-    //formbuild can produce same result as above
+    // formbuild can produce same result as above
     // this.editForm = this.fb.group({
     //   userName: ['', Validators.required,Validators.minLength(2), Validators.pattern("[^ @]*@[^ @]*")],
     //   firstName: ['', Validators.required, Validators.minLength(2)],

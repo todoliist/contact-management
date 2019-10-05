@@ -78,10 +78,10 @@ export class ContactsComponent implements OnInit {
   ngOnInit(): void {
     if (sessionStorage.getItem("adminData")) {
       this.ifAdmin = true;
-      console.log("admin log in ");
+      console.log("admin login ");
     } else {
       this.ifAdmin = false;
-      console.log("user log in ");
+      console.log("user login ");
     }
 
     // to save the typed content when routing from contacts to edit and then back to contacts page

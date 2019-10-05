@@ -38,7 +38,6 @@ export class ContactCreateComponent implements OnInit {
     this.contact.lastName = this.editForm.get("lastName").value;
     this.contact.phone = this.editForm.get("pHone").value;
     this.contact.address = this.editForm.get("address").value;
-    this.saveCompany;
     this.contactService.saveContact(this.contact).subscribe(() => {
       this.router.navigate(["/contacts"]);
     });
@@ -86,7 +85,7 @@ export class ContactCreateComponent implements OnInit {
     }
   }
 
-  formSavedOrClicked(): Observable<boolean> {
+  formSavedOrCancelled(): Observable<boolean> {
     if (this.saveOrCancelClicked) {
       this.saveOrCancelClicked = false;
       return of(true);

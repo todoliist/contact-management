@@ -7,7 +7,6 @@ import {
   NavigationCancel,
   NavigationError
 } from "@angular/router";
-import { AuthService } from "./login/auth.service";
 import { slideInAnimation } from "./app.animation";
 
 @Component({
@@ -20,7 +19,7 @@ export class AppComponent {
   title = "contact-management";
   previousUrl: string;
   spinner: boolean;
-  constructor(private router: Router, private auth: AuthService) {
+  constructor(private router: Router) {
     // setTimeout is used to solve 'Expression has changed after it was checked error'
     setTimeout(() => {
       router.events.subscribe((routerEvent: Event) => {
